@@ -36,11 +36,13 @@ class _EmployeeDialogContentState extends State<EmployeeDialogContent> {
   @override
   void initState() {
     super.initState();
-    employeeProvider =
-        Provider.of<EmployeeDialogProvider>(context, listen: false);
-    if (widget.employee != null) {
-      employeeProvider.setEmployee(widget.employee!);
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      employeeProvider =
+          Provider.of<EmployeeDialogProvider>(context, listen: false);
+      if (widget.employee != null) {
+        employeeProvider.setEmployee(widget.employee!);
+      }
+    });
   }
 
   @override
